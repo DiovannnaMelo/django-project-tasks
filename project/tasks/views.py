@@ -11,5 +11,15 @@ def create_task(request):
             form = TaskForm()
     else:
         form = TaskForm()
-    return render(request, 'create_task.html', {'form': form})      
+        
+    context = {
+        'form': form,
+        'tasks': Task.objects.all()
+    }
+    return render(request, 'create_task.html', context)      
 
+def list_task(request):
+    context = {
+        'tasks': Task.objects.all()
+    }
+    return render(request, 'create_task.html', context)

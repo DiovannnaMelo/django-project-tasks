@@ -8,13 +8,40 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div>
+    <div id="create_task">
+
         <h1>Criar Tarefa</h1>
+
         <form method="post">
             {% csrf_token %}
             {{ form }}
             <button type="submit">Criar</button>
         </form>
+
     </div>
+
+    <div id="list_tasks">
+        
+        <h1>Lista de tarefas</h1>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>complete</th>
+            </tr>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td> {{ task.title }} </td>
+                        <td> {{ task.description }} </td>
+                        <td> {{ task.complete }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
 </body>
 </html>
